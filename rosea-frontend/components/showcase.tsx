@@ -78,7 +78,7 @@ export default function Showcase() {
               viewport={{ once: true }}
               className="text-base md:text-lg text-muted-foreground leading-relaxed"
             >
-              Chaque création de Maison rosea est le fruit d'une passion inébranlable pour le détail. Nos maîtres
+              Chaque création de Rosea est le fruit d'une passion inébranlable pour le détail. Nos maîtres
               artisans dédient leur expertise à transformer les plus beaux tissus en pièces intemporelles qui racontent
               une histoire d'élégance, de sophistication et de luxe véritable.
             </motion.p>

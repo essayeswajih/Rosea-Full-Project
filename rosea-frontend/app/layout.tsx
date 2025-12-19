@@ -10,13 +10,13 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
-  title: "Maison rosea - Maison de Haute Couture de Luxe",
+  title: "Rosea - Maison de Haute Couture de Luxe",
   description:
-    "Découvrez l'élégance intemporelle et la haute couture réalisées avec un art exceptionnel et des matériaux haut de gamme. Maison rosea depuis 1985.",
+    "Découvrez l'élégance intemporelle et la haute couture réalisées avec un art exceptionnel et des matériaux haut de gamme. Rosea depuis 1985.",
   keywords: ["haute couture", "luxe", "mode", "Paris", "vêtements de designer", "couture sur mesure", "fashion"],
   robots: "index, follow",
   openGraph: {
-    title: "Maison rosea - Haute Couture",
+    title: "Rosea - Haute Couture",
     description: "Découvrez nos collections exclusives de haute couture",
     type: "website",
     locale: "fr_FR",

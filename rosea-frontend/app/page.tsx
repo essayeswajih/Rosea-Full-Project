@@ -25,7 +25,7 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Maison rosea",
+            name: "Rosea",
             url: "https://maisonrosea.com",
             logo: "https://maisonrosea.com/logo.png",
             description: "Maison de haute couture de luxe proposant des collections exclusives",

@@ -41,7 +41,7 @@ export default function DashboardLoginPage() {
         className="w-full max-w-md"
       >
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif tracking-widest text-accent mb-2">MAISON rosea</h1>
+          <h1 className="text-4xl font-serif tracking-widest text-accent mb-2">Rosea</h1>
           <p className="text-sm text-muted-foreground tracking-wide">Administration</p>
         </div>
 

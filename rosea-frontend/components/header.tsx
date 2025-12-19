@@ -34,7 +34,7 @@ export default function Header() {
                 isScrolled ? "text-foreground" : "text-white"
               }`}
             >
-              Maison rosea
+              Rosea
             </h1>
           </Link>
         </div>
