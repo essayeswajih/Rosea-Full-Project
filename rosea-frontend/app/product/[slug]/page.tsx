@@ -29,7 +29,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span>Produit non trouvé</span>
+        <span>Produit ({slugParam}) non trouvé</span>
       </div>
     );
   }
