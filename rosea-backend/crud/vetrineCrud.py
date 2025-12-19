@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 from sqlalchemy import asc, desc, func, or_
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -56,7 +57,7 @@ def get_products(
 def get_product_by_id(db: Session, product_id: int) -> Optional[Product]:
     return db.query(Product).filter(Product.id == product_id).first()
 def get_product_by_slug(db: Session, product_slug: str) -> Optional[Product]:
-    return db.query(Product).filter(Product.slug == product_slug).first()
+    return db.query(Product).filter(Product.slug == unquote(product_slug)).first()
 
 def create_product(db: Session, product: ProductBase) -> Product:
     db_product = Product(
