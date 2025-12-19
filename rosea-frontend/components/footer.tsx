@@ -68,7 +68,7 @@ export default function Footer() {
               name: "Maison Elegance",
               description: "Maison de haute couture de luxe",
               url: "https://maisonelegance.com",
-              telephone: "+33123456789",
+              telephone: "+216553981",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "123 Rue de l'Élégance",

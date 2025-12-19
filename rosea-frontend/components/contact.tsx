@@ -45,10 +45,10 @@ export default function Contact() {
                 <div>
                   <p className="text-sm tracking-widest uppercase font-medium mb-1">Email</p>
                   <a
-                    href="mailto:hello@maisonelegance.com"
+                    href="mailto:contact@rosea.tn"
                     className="text-background/80 hover:text-accent transition-colors"
                   >
-                    hello@maisonelegance.com
+                    contact@rosea.tn
                   </a>
                 </div>
               </motion.div>
@@ -63,8 +63,8 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm tracking-widest uppercase font-medium mb-1">Téléphone</p>
-                  <a href="tel:+33123456789" className="text-background/80 hover:text-accent transition-colors">
-                    +33 1 2345 6789
+                  <a href="tel:+216553981" className="text-background/80 hover:text-accent transition-colors">
+                    +216 553981
                   </a>
                 </div>
               </motion.div>
@@ -79,7 +79,7 @@ export default function Contact() {
                 <MapPin className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm tracking-widest uppercase font-medium mb-1">Adresse</p>
-                  <p className="text-background/80">123 Rue de l'Élégance, 75001 Paris, France</p>
+                  <p className="text-background/80">Rue Habib Bourguiba, 5021 Tunis, Monastir</p>
                 </div>
               </motion.div>
             </div>

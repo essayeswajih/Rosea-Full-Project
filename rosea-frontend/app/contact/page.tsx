@@ -33,8 +33,8 @@ export default function ContactPage() {
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",
-              telephone: "+33123456789",
-              email: "hello@maisonelegance.com",
+              telephone: "+216553981",
+              email: "contact@rosea.tn",
               areaServed: "FR",
               availableLanguage: "fr",
             },

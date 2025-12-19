@@ -21,19 +21,19 @@ export default function ContactPageContent() {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@maisonelegance.com",
-      href: "mailto:hello@maisonelegance.com",
+      value: "contact@rosea.tn",
+      href: "mailto:contact@rosea.tn",
     },
     {
       icon: Phone,
       label: "Téléphone",
-      value: "+33 1 2345 6789",
-      href: "tel:+33123456789",
+      value: "+216 553981",
+      href: "tel:+216553981",
     },
     {
       icon: MapPin,
       label: "Adresse",
-      value: "123 Rue de l'Élégance, 75001 Paris, France",
+      value: "Rue Habib Bourguiba, 5021 Tunis, Monastir",
       href: "#",
     },
     {
