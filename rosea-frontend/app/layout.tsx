@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
   },
   alternates: {
-    canonical: "https://maisonrosea.com",
+    canonical: "https://rosea.tn",
   },
   generator: "v0.app",
 }

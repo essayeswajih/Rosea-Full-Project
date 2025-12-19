@@ -41,7 +41,7 @@ export default function DashboardLoginPage() {
         className="w-full max-w-md"
       >
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif tracking-widest text-accent mb-2">Rosea</h1>
+          <h1 className="text-4xl font-serif tracking-widest text-accent mb-2">Roséa</h1>
           <p className="text-sm text-muted-foreground tracking-wide">Administration</p>
         </div>
 
@@ -60,7 +60,7 @@ export default function DashboardLoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@maisonrosea.com"
+                  placeholder="contact@rosea.tn"
                   className="w-full pl-10 pr-4 py-3 bg-background border border-border focus:border-accent focus:outline-none transition-colors"
                   required
                 />

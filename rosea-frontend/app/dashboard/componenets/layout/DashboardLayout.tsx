@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <header className="bg-black border-b border-border px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-serif tracking-widest text-accent">
-            Rosea
+            Roséa
           </h1>
           <p className="text-sm text-muted-foreground">
             Tableau de Bord Administrateur
