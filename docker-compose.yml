@@ -1,0 +1,112 @@
+version: '3.9'
+
+services:
+  # ========================= FASTAPI BACKEND =========================
+  fastapi-app:
+    build:
+      context: ./rosea-backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET_KEY=${SECRET_KEY}
+      - SENDER_EMAIL=${SENDER_EMAIL}
+      - SENDER_PASSWORD=${SENDER_PASSWORD}
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/uploads
+      - ./rosea-backend:/app              # hot reload in dev
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - rosea-network
+
+  # ========================= NEXT.JS FRONTEND =========================
+  nextjs-app:
+    build:
+      context: ./rosea-frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NEXT_PUBLIC_API_URL=http://fastapi-app:8000
+      - NEXT_PUBLIC_BASE_URL=https://maison-rosea.softhub.tn   # ← change to your real domain
+    volumes:
+      - ./uploads:/uploads
+    networks:
+      - rosea-network
+
+  # ========================= NGINX PROXY MANAGER (with static Next.js) =========================
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+      - "8443:443"
+      - "8181:81"           # Admin UI → http://your-server-ip:81
+    environment:
+      DB_SQLITE_FILE: /data/database.sqlite
+      DISABLE_IPV6: "true"
+    volumes:
+      - nginx-data:/data
+      - nginx-letsencrypt:/etc/letsencrypt
+      - nextjs-build:/usr/share/nginx/html   # ← serves Next.js static files
+      - ./uploads:/uploads:ro
+    depends_on:
+      - nextjs-app
+      - fastapi-app
+    networks:
+      - rosea-network
+
+  # ========================= POSTGRESQL =========================
+  postgres-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Optional: if you have init scripts
+      # - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - rosea-network
+
+  # ========================= PGADMIN (optional, remove in prod) =========================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - rosea-network
+
+# ========================= VOLUMES & NETWORK =========================
+volumes:
+  postgres-data:
+  nginx-data:
+  nginx-letsencrypt:
+  nextjs-build:
+
+networks:
+  rosea-network:
+    driver: bridge
