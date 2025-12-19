@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",   // ✅ REQUIRED for Docker
+  output: "standalone",
 
   typescript: {
     ignoreBuildErrors: true,
@@ -8,7 +8,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  publicRuntimeConfig: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
 };
 
 export default nextConfig;
-
