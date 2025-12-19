@@ -70,7 +70,7 @@ export default function ProductCard({ product, itemVariants }: ProductCardProps)
       {/* Product info */}
       
 <motion.a
-  href={`/product/slug/${product.slug}`}
+  href={`/product/${product.slug}`}
   whileHover={{ scale: 1.02 }}
   transition={{ duration: 0.3 }}
   className="block" // ensure it behaves like a block for flex inside
