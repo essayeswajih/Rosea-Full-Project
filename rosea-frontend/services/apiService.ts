@@ -171,38 +171,39 @@ export const apiService = {
   },
 
 
-  async getProductBySlug(slug: string): Promise<Product | null> {
-    try {
-      console.log('URL FROM getProductById:', `https://api.rosea.tn/products/slug/${slug}`);
-      // Direct fetch to your API endpoint, no token used
-      const res = await fetch(`https://api.rosea.tn/products/slug/${slug}`);
-      if (!res.ok) return null;
-      console.log('Res:', res);
-      const product: Product = await res.json();
-      console.log('Product fetched:', product);
+async getProductBySlug(slug: string): Promise<Product | null> {
+  try {
+    console.log("Fetching product via apiFetch:", `/products/slug/${slug}`);
 
-      if (!product) return null;
+    const product: Product = await apiFetch(`/products/slug/${slug}`, {
+      method: "GET",
+      // token si nécessaire
+      // token: this.token
+    });
 
-      // Prepare color images mapping
-      const colors = product.colors || [];
-      const imageUrls = [
-        product.image_url,
-        product.image2_url,
-        product.image3_url,
-        product.image4_url,
-      ].filter(Boolean) as string[];
+    if (!product) return null;
 
-      const colorImages: Record<string, string[]> = {};
-      colors.forEach((color) => {
-        colorImages[color.name] = imageUrls;
-      });
+    // Préparer le mapping colorImages
+    const colors = product.colors || [];
+    const imageUrls = [
+      product.image_url,
+      product.image2_url,
+      product.image3_url,
+      product.image4_url,
+    ].filter(Boolean) as string[];
 
-      return { ...product, colorImages };
-    } catch (error) {
-      console.error("Failed to fetch product:", error);
-      return null;
-    }
+    const colorImages: Record<string, string[]> = {};
+    colors.forEach((color) => {
+      colorImages[color.name] = imageUrls;
+    });
+
+    return { ...product, colorImages };
+  } catch (error) {
+    console.error("Failed to fetch product:", error);
+    return null;
   }
+}
+
   ,
   addProduct(product: Product) {
     this.ensureToken();
