@@ -1,9 +1,10 @@
 import ProductDetailsClient from "./ProductDetailsClient";
 import { apiService, Product } from "@/services/apiService";
+
 export const dynamic = "force-dynamic";
 
 interface ProductDetailsPageProps {
-  params: Promise<{ slug: string }>; // Note: params is now a Promise with slug
+  params: Promise<{ slug: string }>; // params est une Promise
 }
 
 export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
@@ -18,12 +19,11 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
     );
   }
 
-  let product: Product | null = null;
+  let product: Product | null = null; // <-- la variable à utiliser
 
   try {
-    // Fetch the product by its slug, not ID
     console.log("Fetching slug:", slugParam);
-    const product = await apiService.getProductBySlug(slugParam);
+    product = await apiService.getProductBySlug(slugParam); // <-- ne pas redéclarer avec const
     console.log("Product fetched:", product);
   } catch (error) {
     console.error("Failed to fetch product:", error);
