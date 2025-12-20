@@ -22,7 +22,9 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
 
   try {
     // Fetch the product by its slug, not ID
-    product = await apiService.getProductBySlug(slugParam);
+    console.log("Fetching slug:", slugParam);
+    const product = await apiService.getProductBySlug(slugParam);
+    console.log("Product fetched:", product);
   } catch (error) {
     console.error("Failed to fetch product:", error);
   }
