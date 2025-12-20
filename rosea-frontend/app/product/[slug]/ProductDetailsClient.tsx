@@ -84,7 +84,7 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="space-y-8">
             
             <div>
-              <p className="text-sm text-muted-foreground tracking-widest mb-3">{product.category_id}</p>
+              <p className="text-sm text-muted-foreground tracking-widest mb-3">{product?.buzzent}</p>
               <h1 className="text-4xl font-serif tracking-tight mb-4">{product.name}</h1>
 
               <div className="flex items-center gap-4 mb-6">
