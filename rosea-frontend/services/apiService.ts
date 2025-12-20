@@ -171,7 +171,12 @@ export const apiService = {
 
   async getProductBySlug(slug: string): Promise<Product | null> {
     try {
-      const product: Product = await apiFetch(`/products/slug/${slug}`);
+      // Direct fetch to your API endpoint, no token used
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/slug/${slug}`);
+      if (!res.ok) return null;
+
+      const product: Product = await res.json();
+
       if (!product) return null;
 
       // Prepare color images mapping
