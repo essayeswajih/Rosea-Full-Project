@@ -44,6 +44,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     try:
         # i want to show hashed password for debugging
         print(f"Password: {form_data.password}")
+        print(f"Hashed Password: {get_user(db, form_data.username).hashed_password}")
         user = get_user(db, form_data.username)
         if not user or not verify_password(form_data.password, user.hashed_password):
             raise HTTPException(
