@@ -169,10 +169,11 @@ export const apiService = {
     }
   },
 
+
   async getProductBySlug(slug: string): Promise<Product | null> {
     try {
       // Direct fetch to your API endpoint, no token used
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/slug/${slug}`);
+      const res = await fetch(`https://api.rosea.tn/products/slug/${slug}`);
       if (!res.ok) return null;
 
       const product: Product = await res.json();
