@@ -1,4 +1,7 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://api.rosea.tn";
+const API_BASE =
+  typeof window === "undefined"
+    ? "http://rosea-fastapi-app:8000" // accès interne Docker
+    : process.env.NEXT_PUBLIC_API_URL || "https://api.rosea.tn";
 
 // In-memory cache for server-side calls
 const cache: { [key: string]: any } = {};
