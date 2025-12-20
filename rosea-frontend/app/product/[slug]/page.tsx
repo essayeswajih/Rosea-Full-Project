@@ -1,5 +1,6 @@
 import ProductDetailsClient from "./ProductDetailsClient";
 import { apiService, Product } from "@/services/apiService";
+export const dynamic = "force-dynamic";
 
 interface ProductDetailsPageProps {
   params: Promise<{ slug: string }>; // Note: params is now a Promise with slug
