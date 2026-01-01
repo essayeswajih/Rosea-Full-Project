@@ -7,10 +7,10 @@ AdminEmail = os.getenv('SENDER_EMAIL')
 
 def send_email(to_email, subject, body):
     # Environment variables
-    smtp_user = os.getenv("SMTP_USER")
-    smtp_pass = os.getenv("SMTP_PASS")
-    smtp_server = os.getenv("SMTP_SERVER", "smtp-relay.brevo.com")
-    smtp_port = int(os.getenv("SMTP_PORT", 587))
+    smtp_user = os.getenv("SENDER_EMAIL")
+    smtp_pass = os.getenv("SENDER_PASSWORD")
+    smtp_server = os.getenv("SENDER_SERVER", "smtp-relay.brevo.com")
+    smtp_port = int(os.getenv("SENDER_PORT", 587))
     from_email = os.getenv("FROM_EMAIL")
 
     # Prepare message
