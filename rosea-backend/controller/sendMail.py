@@ -12,6 +12,15 @@ def send_email(to_email, subject, body):
     smtp_server = os.getenv("SENDER_SERVER", "smtp-relay.brevo.com")
     smtp_port = int(os.getenv("SENDER_PORT", 587))
     from_email = os.getenv("FROM_EMAIL")
+    #debug
+    print(f"Email sent to {to_email}")
+    print(f"From: {from_email}")
+    print(f"Subject: {subject}")
+    print(f"Body: {body}")
+    print(f"SMTP Server: {smtp_server}")
+    print(f"SMTP Port: {smtp_port}")
+    print(f"SMTP User: {smtp_user}")
+    print(f"SMTP Pass: {smtp_pass}")
 
     # Prepare message
     msg = MIMEMultipart()
