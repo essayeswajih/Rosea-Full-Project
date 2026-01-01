@@ -24,7 +24,7 @@ def send_email_via_gmail(to_email, subject, body):
     msg.attach(MIMEText(body, 'plain'))
 
     # Setup the server
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP(sender_server, sender_port)
     server.starttls()  # Secure the connection
 
     # Login to the server
