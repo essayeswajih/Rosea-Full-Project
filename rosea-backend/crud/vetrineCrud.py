@@ -266,7 +266,7 @@ def create_order(db: Session, order_create: OrderCreate, total_amount: float) ->
                     </table>
 
                     <p style="text-align:center;margin:24px 0;">
-                        <a href="https://rosea.tn/client-order-view?ordercode={order.code}"
+                        <a href="https://rosea.tn/order/{order.code}"
                         style="background:#000;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:6px;display:inline-block;">
                         Suivre ma commande
                         </a>
