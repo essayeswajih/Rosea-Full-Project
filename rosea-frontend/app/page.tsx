@@ -29,7 +29,7 @@ export default function Home() {
             url: "https://rosea.tn",
             logo: "https://rosea.tn/icon.svg",
             description: "Maison de haute couture de luxe proposant des collections exclusives",
-            sameAs: ["https://instagram.com/rosea.tunisie", "https://facebook.com/maisonrosea"],
+            sameAs: ["https://instagram.com/rosea_tunisie", "https://facebook.com/maisonrosea"],
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",

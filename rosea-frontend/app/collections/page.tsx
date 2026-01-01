@@ -43,7 +43,7 @@ export default function CollectionsPage() {
             "@type": "CollectionPage",
             name: "Collections Maison Elegance",
             description: "Nos collections complètes de haute couture avec 18+ produits premium",
-            url: "https://maisonelegance.com/collections",
+            url: "https://rosea.tn/collections",
             itemListElement: [
               { "@type": "Thing", name: "Robes" },
               { "@type": "Thing", name: "Accessoires" },

@@ -28,13 +28,13 @@ export default function AProposPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Maison Elegance",
+            name: "Roséa",
             description: "Maison de haute couture de luxe depuis 1985",
             foundingDate: "1985",
-            url: "https://maisonelegance.com",
-            sameAs: ["https://instagram.com/maisonelegance", "https://facebook.com/maisonelegance"],
-            areaServed: "FR",
-            founder: "Artisans Éminents de Paris",
+            url: "https://rosea.tn",
+            sameAs: ["https://instagram.com/rosea_tunisie", "https://www.facebook.com/profile.php?id=61585270365895"],
+            areaServed: "TN",
+            founder: "Roséa Tunisie",
           }),
         }}
       />
