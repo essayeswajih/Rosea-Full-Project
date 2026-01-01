@@ -21,6 +21,7 @@ def send_email(to_email, subject, body):
     msg["To"] = to_email
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
+    msg.attach(MIMEText(body, "html", "utf-8"))
 
     try:
         server = smtplib.SMTP(smtp_server, smtp_port, timeout=15)
