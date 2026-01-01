@@ -11,7 +11,7 @@ def send_email(to_email, subject, body):
     smtp_pass = os.getenv("SENDER_PASSWORD")
     smtp_server = os.getenv("SENDER_SERVER", "smtp-relay.brevo.com")
     smtp_port = int(os.getenv("SENDER_PORT", 587))
-    from_email = os.getenv("FROM_EMAIL")
+    from_email = smtp_user
     #debug
     print(f"Email sent to {to_email}")
     print(f"From: {from_email}")
