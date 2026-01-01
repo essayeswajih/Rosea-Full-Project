@@ -3,15 +3,16 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_email(to_email, subject, body):
-    smtp_user = os.getenv("SMTP_USER")      # Brevo login
-    smtp_pass = os.getenv("SMTP_PASS")      # xsmtpsib-...
-    smtp_server = os.getenv("SMTP_SERVER")
-    smtp_port = int(os.getenv("SMTP_PORT"))
-    from_email = os.getenv("SENDER_EMAIL")  # contact@rosea.tn
+BREVO_SMTP_LOGIN = "9f1d60001@smtp-brevo.com"  # 👈 REQUIRED
 
-    if not all([smtp_user, smtp_pass, smtp_server, from_email]):
-        raise RuntimeError("SMTP configuration missing")
+def send_email(to_email, subject, body):
+    from_email = os.getenv("SENDER_EMAIL")
+    smtp_pass = os.getenv("SENDER_PASSWORD")
+    smtp_server = os.getenv("SENDER_SERVER")
+    smtp_port = int(os.getenv("SENDER_PORT"))
+
+    if not all([from_email, smtp_pass, smtp_server]):
+        raise RuntimeError("Missing SMTP env variables")
 
     msg = MIMEMultipart()
     msg["From"] = from_email
@@ -24,7 +25,7 @@ def send_email(to_email, subject, body):
         server.ehlo()
         server.starttls()
         server.ehlo()
-        server.login(smtp_user, smtp_pass)
+        server.login(BREVO_SMTP_LOGIN, smtp_pass)  # ✅ FIX
         server.sendmail(from_email, to_email, msg.as_string())
         server.quit()
         print(f"✅ Email sent to {to_email}")
