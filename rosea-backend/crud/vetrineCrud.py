@@ -224,19 +224,82 @@ def create_order(db: Session, order_create: OrderCreate, total_amount: float) ->
     # Commit all changes at once
     db.commit()
     db.refresh(order)
+    html_body = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title>Confirmation de commande</title>
+        </head>
+        <body style="margin:0;padding:0;background-color:#f6f6f6;font-family:Arial,Helvetica,sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+            <td align="center" style="padding:30px 15px;">
+                <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                
+                <!-- Header -->
+                <tr>
+                    <td style="padding:24px;text-align:center;border-bottom:1px solid #eeeeee;">
+                    <h1 style="margin:0;color:#000;font-size:24px;">Roséa</h1>
+                    </td>
+                </tr>
+
+                <!-- Content -->
+                <tr>
+                    <td style="padding:24px;color:#333;font-size:14px;line-height:1.6;">
+                    <p>Bonjour,</p>
+
+                    <p>
+                        Merci pour votre commande <strong>{order.code}</strong>.<br>
+                        Votre commande sera traitée rapidement.
+                    </p>
+
+                    <table width="100%" cellpadding="8" cellspacing="0" style="background:#fafafa;border-radius:6px;margin:16px 0;">
+                        <tr>
+                        <td><strong>Montant total</strong></td>
+                        <td align="right">{order.total_amount} TND</td>
+                        </tr>
+                        <tr>
+                        <td><strong>Statut</strong></td>
+                        <td align="right">{order.status}</td>
+                        </tr>
+                    </table>
+
+                    <p style="text-align:center;margin:24px 0;">
+                        <a href="https://rosea.tn/client-order-view?ordercode={order.code}"
+                        style="background:#000;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:6px;display:inline-block;">
+                        Suivre ma commande
+                        </a>
+                    </p>
+
+                    <p>
+                        Cordialement,<br>
+                        <strong>Roséa Team</strong>
+                    </p>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td style="padding:16px;text-align:center;font-size:12px;color:#888;border-top:1px solid #eeeeee;">
+                    © {2026} Roséa — Tous droits réservés
+                    </td>
+                </tr>
+
+                </table>
+            </td>
+            </tr>
+        </table>
+        </body>
+        </html>
+        """
+
     # send_email
     send_email(
         to_email=order.email,
         subject="Confirmation de commande",
         body=(
-            f"Merci pour votre commande {order.code}.\n"
-            f"Votre commande sera traitée rapidement.\n"
-            f"Montant total : {order.total_amount}.\n"
-            f"Statut : {str(order.status)}\n"
-            f"Vous pouvez suivre votre commande en cliquant sur ce lien : "
-            f"https://apiculturegalai.tn/client-order-view?ordercode={order.code}\n\n"
-            "Cordialement,\n"
-            "Apiculture Galai Team"
+            html_body
         )
     )
     return order

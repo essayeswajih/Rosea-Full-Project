@@ -34,3 +34,4 @@ def send_email(to_email, subject, body):
     except Exception as e:
         print(f"❌ Email sending failed: {e}")
         raise
+
