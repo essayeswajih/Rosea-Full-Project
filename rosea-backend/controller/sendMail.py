@@ -20,7 +20,6 @@ def send_email(to_email, subject, body):
     msg["From"] = from_email
     msg["To"] = to_email
     msg["Subject"] = subject
-    msg.attach(MIMEText(body, "plain"))
     msg.attach(MIMEText(body, "html", "utf-8"))
 
     try:
