@@ -3,42 +3,31 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-AdminEmail = os.getenv('SENDER_EMAIL')
-
 def send_email(to_email, subject, body):
-    # Environment variables
-    smtp_user = os.getenv("SENDER_EMAIL")
-    smtp_pass = os.getenv("SENDER_PASSWORD")
-    smtp_server = os.getenv("SENDER_SERVER", "smtp-relay.brevo.com")
-    smtp_port = int(os.getenv("SENDER_PORT", 587))
-    from_email = smtp_user
-    #debug
-    print(f"Email sent to {to_email}")
-    print(f"From: {from_email}")
-    print(f"Subject: {subject}")
-    print(f"Body: {body}")
-    print(f"SMTP Server: {smtp_server}")
-    print(f"SMTP Port: {smtp_port}")
-    print(f"SMTP User: {smtp_user}")
-    print(f"SMTP Pass: {smtp_pass}")
+    smtp_user = os.getenv("SMTP_USER")      # Brevo login
+    smtp_pass = os.getenv("SMTP_PASS")      # xsmtpsib-...
+    smtp_server = os.getenv("SMTP_SERVER")
+    smtp_port = int(os.getenv("SMTP_PORT"))
+    from_email = os.getenv("SENDER_EMAIL")  # contact@rosea.tn
 
-    # Prepare message
+    if not all([smtp_user, smtp_pass, smtp_server, from_email]):
+        raise RuntimeError("SMTP configuration missing")
+
     msg = MIMEMultipart()
-    msg['From'] = from_email
-    msg['To'] = to_email
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
+    msg["From"] = from_email
+    msg["To"] = to_email
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
 
-    # Connect and send
     try:
-        server = smtplib.SMTP(smtp_server, smtp_port, timeout=10)  # <-- ensure connection
-        server.ehlo()               # Identify to server
-        server.starttls()           # Upgrade to TLS
-        server.ehlo()               # Re-identify after TLS
+        server = smtplib.SMTP(smtp_server, smtp_port, timeout=15)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
         server.login(smtp_user, smtp_pass)
         server.sendmail(from_email, to_email, msg.as_string())
         server.quit()
-        print(f"Email sent to {to_email}")
+        print(f"✅ Email sent to {to_email}")
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        print(f"❌ Email sending failed: {e}")
         raise
