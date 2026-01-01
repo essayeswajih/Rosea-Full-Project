@@ -27,8 +27,8 @@ export default function ContactPageContent() {
     {
       icon: Phone,
       label: "Téléphone",
-      value: "+216 553981",
-      href: "tel:+216553981",
+      value: "+216 27553981",
+      href: "tel:+21627553981",
     },
     {
       icon: MapPin,

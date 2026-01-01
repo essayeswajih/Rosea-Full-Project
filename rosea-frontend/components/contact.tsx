@@ -63,8 +63,8 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm tracking-widest uppercase font-medium mb-1">Téléphone</p>
-                  <a href="tel:+216553981" className="text-background/80 hover:text-accent transition-colors">
-                    +216 553981
+                  <a href="tel:+21627553981" className="text-background/80 hover:text-accent transition-colors">
+                    +216 27553981
                   </a>
                 </div>
               </motion.div>

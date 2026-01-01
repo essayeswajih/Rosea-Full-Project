@@ -33,7 +33,7 @@ export default function ContactPage() {
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",
-              telephone: "+216553981",
+              telephone: "+21627553981",
               email: "contact@rosea.tn",
               areaServed: "FR",
               availableLanguage: "fr",

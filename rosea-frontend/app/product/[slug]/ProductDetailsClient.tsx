@@ -95,8 +95,11 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
                 </div>
                 <span className="text-sm text-muted-foreground">{product.num_ratings || 0} avis</span>
               </div>
-
-              <p className="text-3xl font-serif text-accent tracking-tight">{product.price.toLocaleString()} DT</p>
+              <p className="text-3xl font-serif text-accent tracking-tight">
+                {(product.discounted_price ?? 0) > 0
+                  ? product.discounted_price!.toLocaleString()
+                  : product.price.toLocaleString()} DT
+              </p>
             </div>
 
             <p className="text-foreground/80 leading-relaxed">{product.description}</p>
