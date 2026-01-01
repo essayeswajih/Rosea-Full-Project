@@ -8,7 +8,7 @@ from datetime import datetime
 from fastapi import HTTPException
 from random import randint
 
-from controller.sendMail import send_email_via_gmail
+from controller.sendMail import send_email
 
 # CRUD operations for Product
 def get_products(
@@ -224,8 +224,8 @@ def create_order(db: Session, order_create: OrderCreate, total_amount: float) ->
     # Commit all changes at once
     db.commit()
     db.refresh(order)
-    # send_email_via_gmail
-    send_email_via_gmail(
+    # send_email
+    send_email(
         to_email=order.email,
         subject="Confirmation de commande",
         body=(

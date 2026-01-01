@@ -13,7 +13,7 @@ from crud.vetrineCrud import (
     get_products, get_product_by_id, get_product_by_slug, create_product, get_orders, create_order,
     get_cart_items, add_to_cart, remove_from_cart, update_category, update_product
 )
-from controller.sendMail import AdminEmail, send_email_via_gmail
+from controller.sendMail import AdminEmail, send_email
 from fastapi import Request
 from config.limiter_config import limiter
 
@@ -225,7 +225,7 @@ class Newsletter(BaseModel):
 def subscribe_to_newsletter(request: Request, newsletter: Newsletter):
     email = newsletter.email
     try:
-        send_email_via_gmail(
+        send_email(
             subject="Apiculture Newsletter Subscription",
             body=f"{email} has subscribed to the Apiculture newsletter.",
             to_email=AdminEmail
@@ -254,7 +254,7 @@ def contact_form(request: Request, contact_form: contactRequest):
     message = bleach.clean(contact_form.message)
     
     try:
-        send_email_via_gmail(
+        send_email(
             subject="Apiculture Contact Message",
             body=f"Name: {name}\nEmail: {contact_form.email}\nSujet: {sujet}\nMessage: {message}",
             to_email=AdminEmail,
