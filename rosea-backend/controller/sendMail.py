@@ -5,33 +5,20 @@ from email.mime.text import MIMEText
 
 AdminEmail = os.getenv('SENDER_EMAIL')
 
-def send_email_via_gmail(to_email, subject, body):
+def send_email(to_email, subject, body):
+    smtp_user = os.getenv("SMTP_USER")
+    smtp_pass = os.getenv("SMTP_PASS")
+    smtp_server = os.getenv("SMTP_SERVER")
+    smtp_port = int(os.getenv("SMTP_PORT"))
+    from_email = os.getenv("FROM_EMAIL")
 
-
-# Access environment variables
-    sender_email = os.getenv('SENDER_EMAIL')
-    sender_password = os.getenv('SENDER_PASSWORD')
-    sender_server = os.getenv('SENDER_SERVER')
-    sender_port = os.getenv('SENDER_PORT')
-
-    # Setup the MIME
     msg = MIMEMultipart()
-    msg['From'] = sender_email
+    msg['From'] = from_email
     msg['To'] = to_email
     msg['Subject'] = subject
-
-    # Add body to email
     msg.attach(MIMEText(body, 'plain'))
 
-    # Setup the server
-    server = smtplib.SMTP(sender_server, sender_port)
-    server.starttls()  # Secure the connection
-
-    # Login to the server
-    server.login(sender_email, sender_password)
-
-    # Send the email
-    text = msg.as_string()
-    server.sendmail(sender_email, to_email, text)
-    server.quit()
-
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_user, smtp_pass)  # ✅ Use SMTP login here
+        server.sendmail(from_email, to_email, msg.as_string())
