@@ -3,6 +3,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+AdminEmail = os.getenv('SENDER_EMAIL')
+
 BREVO_SMTP_LOGIN = "9f1d60001@smtp-brevo.com"  # 👈 REQUIRED
 
 def send_email(to_email, subject, body):
