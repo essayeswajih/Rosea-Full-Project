@@ -29,7 +29,7 @@ export default function ContactPage() {
             "@context": "https://schema.org",
             "@type": "ContactPage",
             name: "Maison Elegance - Contact",
-            url: "https://maisonelegance.com/contact",
+            url: "https://rosea.tn/contact",
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",
