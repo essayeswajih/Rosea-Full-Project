@@ -11,6 +11,8 @@ def send_email_via_gmail(to_email, subject, body):
 # Access environment variables
     sender_email = os.getenv('SENDER_EMAIL')
     sender_password = os.getenv('SENDER_PASSWORD')
+    sender_server = os.getenv('SENDER_SERVER')
+    sender_port = os.getenv('SENDER_PORT')
 
     # Setup the MIME
     msg = MIMEMultipart()
