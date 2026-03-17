@@ -41,6 +41,7 @@ def get_user(db: Session, username: str):
 @router.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     print(f"Login request for username: {form_data.username}")  # Debug log
+    print(f"Hashed Password:{get_password_hash(form_data.password)}")
     try:
         # i want to show hashed password for debugging
         print(f"Password: {form_data.password}")
